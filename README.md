@@ -18,7 +18,7 @@ cluster-announce-bus-port [Dokcer 映射业务端口（未修改端口可以不�
 
   ```shell
 # 构建容器
-docker-compose -f redis-cluster-ip.yml up -d
+docker-compose -f docker-compose.yml up -d
   ```
 
 3. 进入容器构建集群
@@ -29,9 +29,6 @@ docker exec -it redis-master1 /bin/sh
   
 # 构建集群
 redis-cli --cluster create 192.168.100.11:7001 192.168.100.12:7002 192.168.100.13:7003 192.168.100.14:7004 192.168.100.15:7005 192.168.100.16:7006 --cluster-replicas 1
-
-# 主机模式
-redis-cli --cluster create mosy.com:7001 mosy.com:7002 mosy.com:7003 mosy.com:7004 mosy.com:7005 mosy.com:7006 --cluster-replicas
   ```
 
   

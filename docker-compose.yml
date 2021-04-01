@@ -1,7 +1,7 @@
 version: '3'
 services:
   redis-cluster-master1:
-    image: 'redis:5.0.10'
+    image: 'redis:5.0.12'
     container_name: redis-master1
     environment:
       - PORT=7001
@@ -17,7 +17,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7001.conf"
 
   redis-cluster-master2:
-    image: 'redis:5.0.10'
+    image: 'redis:5.0.12'
     container_name: redis-master2
     environment:
       - PORT=7002
@@ -33,7 +33,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7002.conf"
 
   redis-cluster-master3:
-    image: 'redis:5.0.10'
+    image: 'redis:5.0.12'
     container_name: redis-master3
     environment:
       - PORT=7003
@@ -49,7 +49,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7003.conf"
 
   redis-cluster-slave1:
-    image: 'redis:5.0.10'
+    image: 'redis:5.0.12'
     container_name: redis-slave1
     environment:
       - PORT=7004
@@ -65,7 +65,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7004.conf"
 
   redis-cluster-slave2:
-    image: 'redis:5.0.10'
+    image: 'redis:5.0.12'
     container_name: redis-slave2
     environment:
       - PORT=7005
@@ -81,7 +81,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7005.conf"
 
   redis-cluster-slave3:
-    image: 'redis:5.0.10'
+    image: 'redis:5.0.12'
     container_name: redis-slave3
     environment:
       - PORT=7006
