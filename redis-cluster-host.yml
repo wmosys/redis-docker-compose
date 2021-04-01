@@ -1,0 +1,67 @@
+version: '3'
+services:
+  redis-cluster-master1:
+    image: 'redis:5.0.10'
+    container_name: redis-master1
+    network_mode: 'host'
+    environment:
+      - PORT=7001
+    volumes:
+      - './config-host:/config'
+      - './data-host:/data'
+    command: /bin/bash -c "redis-server /config/redis_7001.conf"
+
+  redis-cluster-master2:
+    image: 'redis:5.0.10'
+    container_name: redis-master2
+    network_mode: 'host'
+    environment:
+      - PORT=7002
+    volumes:
+      - './config-host:/config'
+      - './data-host:/data'
+    command: /bin/bash -c "redis-server /config/redis_7002.conf"
+
+  redis-cluster-master3:
+    image: 'redis:5.0.10'
+    container_name: redis-master3
+    network_mode: 'host'
+    environment:
+      - PORT=7003
+    volumes:
+      - './config-host:/config'
+      - './data-host:/data'
+    command: /bin/bash -c "redis-server /config/redis_7003.conf"
+
+  redis-cluster-slave1:
+    image: 'redis:5.0.10'
+    container_name: redis-slave1
+    network_mode: 'host'
+    environment:
+      - PORT=7004
+    volumes:
+      - './config-host:/config'
+      - './data-host:/data'
+    command: /bin/bash -c "redis-server /config/redis_7004.conf"
+
+  redis-cluster-slave2:
+    image: 'redis:5.0.10'
+    container_name: redis-slave2
+    network_mode: 'host'
+    environment:
+      - PORT=7005
+    volumes:
+      - './config-host:/config'
+      - './data-host:/data'
+    command: /bin/bash -c "redis-server /config/redis_7005.conf"
+
+  redis-cluster-slave3:
+    image: 'redis:5.0.10'
+    container_name: redis-slave3
+    network_mode: 'host'
+    environment:
+      - PORT=7006
+    volumes:
+      - './config-host:/config'
+      - './data-host:/data'
+    command: /bin/bash -c "redis-server /config/redis_7006.conf"

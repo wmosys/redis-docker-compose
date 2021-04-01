@@ -1,0 +1,106 @@
+version: '3'
+services:
+  redis-cluster-master1:
+    image: 'redis:5.0.10'
+    container_name: redis-master1
+    environment:
+      - PORT=7001
+    networks:
+      redis_cluster_nat:
+        ipv4_address: 192.168.100.11
+    ports:
+      - '7001:7001'
+      - '17001:17001'
+    volumes:
+      - './config:/config'
+      - './data:/data'
+    command: /bin/bash -c "redis-server /config/redis_7001.conf"
+
+  redis-cluster-master2:
+    image: 'redis:5.0.10'
+    container_name: redis-master2
+    environment:
+      - PORT=7002
+    networks:
+      redis_cluster_nat:
+        ipv4_address: 192.168.100.12
+    ports:
+      - '7002:7002'
+      - '17002:17002'
+    volumes:
+      - './config:/config'
+      - './data:/data'
+    command: /bin/bash -c "redis-server /config/redis_7002.conf"
+
+  redis-cluster-master3:
+    image: 'redis:5.0.10'
+    container_name: redis-master3
+    environment:
+      - PORT=7003
+    networks:
+      redis_cluster_nat:
+        ipv4_address: 192.168.100.13
+    ports:
+      - '7003:7003'
+      - '17003:17003'
+    volumes:
+      - './config:/config'
+      - './data:/data'
+    command: /bin/bash -c "redis-server /config/redis_7003.conf"
+
+  redis-cluster-slave1:
+    image: 'redis:5.0.10'
+    container_name: redis-slave1
+    environment:
+      - PORT=7004
+    networks:
+      redis_cluster_nat:
+        ipv4_address: 192.168.100.14
+    ports:
+      - '7004:7004'
+      - '17004:17004'
+    volumes:
+      - './config:/config'
+      - './data:/data'
+    command: /bin/bash -c "redis-server /config/redis_7004.conf"
+
+  redis-cluster-slave2:
+    image: 'redis:5.0.10'
+    container_name: redis-slave2
+    environment:
+      - PORT=7005
+    networks:
+      redis_cluster_nat:
+        ipv4_address: 192.168.100.15
+    ports:
+      - '7005:7005'
+      - '17005:17005'
+    volumes:
+      - './config:/config'
+      - './data:/data'
+    command: /bin/bash -c "redis-server /config/redis_7005.conf"
+
+  redis-cluster-slave3:
+    image: 'redis:5.0.10'
+    container_name: redis-slave3
+    environment:
+      - PORT=7006
+    networks:
+      redis_cluster_nat:
+        ipv4_address: 192.168.100.16
+    ports:
+      - '7006:7006'
+      - '17006:17006'
+    volumes:
+      - './config:/config'
+      - './data:/data'
+    command: /bin/bash -c "redis-server /config/redis_7006.conf"
+
+networks:
+  redis_cluster_nat:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.100.0/24
+          gateway: 192.168.100.1
