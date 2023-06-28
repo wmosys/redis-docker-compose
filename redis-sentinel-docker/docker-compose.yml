@@ -1,0 +1,95 @@
+version: '3'
+services:
+  redis-sentinel-master1:
+    image: 'redis:6.2.12'
+    container_name: redis-sentinel-master1
+    restart: always
+    environment:
+      - PORT=8001
+    network_mode: host
+    ports:
+      - '8001:8001'
+    volumes:
+      - '/data/docker/redis-sentinel/config:/config'
+      - '/data/docker/redis-sentinel/data:/data'
+    command: /bin/bash -c "redis-server /config/redis_master_8001.conf"
+
+  redis-sentinel-slave1:
+    image: 'redis:6.2.12'
+    container_name: redis-sentinel-slave1
+    restart: always
+    depends_on:
+      - redis-sentinel-master1
+    environment:
+      - PORT=8002
+    network_mode: host
+    ports:
+      - '8002:8002'
+    volumes:
+      - '/data/docker/redis-sentinel/config:/config'
+      - '/data/docker/redis-sentinel/data:/data'
+    command: /bin/bash -c "redis-server /config/redis_slave_8002.conf"
+
+  redis-sentinel-slave2:
+    image: 'redis:6.2.12'
+    container_name: redis-sentinel-slave2
+    restart: always
+    depends_on:
+      - redis-sentinel-slave1
+    environment:
+      - PORT=8003
+    network_mode: host
+    ports:
+      - '8003:8003'
+    volumes:
+      - '/data/docker/redis-sentinel/config:/config'
+      - '/data/docker/redis-sentinel/data:/data'
+    command: /bin/bash -c "redis-server /config/redis_slave_8003.conf"
+
+  redis-sentinel-sentinel1:
+    image: 'redis:6.2.12'
+    container_name: redis-sentinel-sentinel1
+    restart: always
+    depends_on:
+      - redis-sentinel-slave2
+    environment:
+      - PORT=28004
+    network_mode: host
+    ports:
+      - '28004:28004'
+    volumes:
+      - '/data/docker/redis-sentinel/config:/config'
+      - '/data/docker/redis-sentinel/data:/data'
+    command: /bin/bash -c "redis-sentinel /config/redis_sentinel_28004.conf"
+
+  redis-sentinel-sentinel2:
+    image: 'redis:6.2.12'
+    container_name: redis-sentinel-sentinel2
+    restart: always
+    depends_on:
+      - redis-sentinel-sentinel1
+    environment:
+      - PORT=28005
+    network_mode: host
+    ports:
+      - '28005:28005'
+    volumes:
+      - '/data/docker/redis-sentinel/config:/config'
+      - '/data/docker/redis-sentinel/data:/data'
+    command: /bin/bash -c "redis-sentinel /config/redis_sentinel_28005.conf"
+
+  redis-sentinel-sentinel3:
+    image: 'redis:6.2.12'
+    container_name: redis-sentinel-sentinel3
+    restart: always
+    depends_on:
+      - redis-sentinel-sentinel2
+    environment:
+      - PORT=8006
+    network_mode: host
+    ports:
+      - '28006:28006'
+    volumes:
+      - '/data/docker/redis-sentinel/config:/config'
+      - '/data/docker/redis-sentinel/data:/data'
+    command: /bin/bash -c "redis-sentinel /config/redis_sentinel_28006.conf"

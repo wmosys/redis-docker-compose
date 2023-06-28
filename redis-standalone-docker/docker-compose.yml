@@ -1,0 +1,15 @@
+version: '3'
+services:
+  redis-standalone:
+    image: 'redis:6.2.12'
+    container_name: redis-standalone-1
+    restart: always
+    environment:
+      - PORT=6001
+    ports:
+      - '6001:6001'
+      - '16001:16001'
+    volumes:
+      - '/data/docker/redis-standalone/config:/config'
+      - '/data/docker/redis-standalone/data:/data'
+    command: /bin/bash -c "redis-server /config/redis_6001.conf"

@@ -1,0 +1,1 @@
+redis-server  /config/redis_${PORT}.conf
