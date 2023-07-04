@@ -28,7 +28,7 @@ docker-compose -f docker-compose.yml up -d
 docker exec -it redis-master1 /bin/sh
   
 # 构建集群
-redis-cli --cluster create 192.168.100.11:7001 192.168.100.12:7002 192.168.100.13:7003 192.168.100.14:7004 192.168.100.15:7005 192.168.100.16:7006 --cluster-replicas 1
+redis-cli --cluster create 10.88.11.21:7001 10.88.11.21:7002 10.88.11.21:7003 10.88.11.21:7004 10.88.11.21:7005 10.88.11.21:7006 --cluster-replicas 1
   ```
 
   
