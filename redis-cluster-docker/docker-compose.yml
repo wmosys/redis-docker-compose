@@ -1,7 +1,7 @@
 version: '3'
 services:
   redis-cluster-master1:
-    image: 'redis:6.2.13'
+    image: 'redis:6.2.14'
     container_name: redis-cluster-master1
     restart: always
     environment:
@@ -18,7 +18,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7001.conf"
 
   redis-cluster-master2:
-    image: 'redis:6.2.13'
+    image: 'redis:6.2.14'
     container_name: redis-cluster-master2
     restart: always
     environment:
@@ -35,7 +35,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7002.conf"
 
   redis-cluster-master3:
-    image: 'redis:6.2.13'
+    image: 'redis:6.2.14'
     container_name: redis-cluster-master3
     restart: always
     environment:
@@ -52,7 +52,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7003.conf"
 
   redis-cluster-slave1:
-    image: 'redis:6.2.13'
+    image: 'redis:6.2.14'
     container_name: redis-cluster-slave1
     restart: always
     environment:
@@ -69,7 +69,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7004.conf"
 
   redis-cluster-slave2:
-    image: 'redis:6.2.13'
+    image: 'redis:6.2.14'
     container_name: redis-cluster-slave2
     restart: always
     environment:
@@ -86,7 +86,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_7005.conf"
 
   redis-cluster-slave3:
-    image: 'redis:6.2.13'
+    image: 'redis:6.2.14'
     container_name: redis-cluster-slave3
     restart: always
     environment:

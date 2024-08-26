@@ -1,7 +1,7 @@
 version: '3'
 services:
   redis-sentinel-master1:
-    image: 'redis:6.2.12'
+    image: 'redis:6.2.14'
     container_name: redis-sentinel-master1
     restart: always
     environment:
@@ -15,7 +15,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_master_8001.conf"
 
   redis-sentinel-slave1:
-    image: 'redis:6.2.12'
+    image: 'redis:6.2.14'
     container_name: redis-sentinel-slave1
     restart: always
     depends_on:
@@ -31,7 +31,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_slave_8002.conf"
 
   redis-sentinel-slave2:
-    image: 'redis:6.2.12'
+    image: 'redis:6.2.14'
     container_name: redis-sentinel-slave2
     restart: always
     depends_on:
@@ -47,7 +47,7 @@ services:
     command: /bin/bash -c "redis-server /config/redis_slave_8003.conf"
 
   redis-sentinel-sentinel1:
-    image: 'redis:6.2.12'
+    image: 'redis:6.2.14'
     container_name: redis-sentinel-sentinel1
     restart: always
     depends_on:
@@ -63,7 +63,7 @@ services:
     command: /bin/bash -c "redis-sentinel /config/redis_sentinel_28004.conf"
 
   redis-sentinel-sentinel2:
-    image: 'redis:6.2.12'
+    image: 'redis:6.2.14'
     container_name: redis-sentinel-sentinel2
     restart: always
     depends_on:
@@ -79,7 +79,7 @@ services:
     command: /bin/bash -c "redis-sentinel /config/redis_sentinel_28005.conf"
 
   redis-sentinel-sentinel3:
-    image: 'redis:6.2.12'
+    image: 'redis:6.2.14'
     container_name: redis-sentinel-sentinel3
     restart: always
     depends_on:
